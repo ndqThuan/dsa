@@ -44,18 +44,16 @@ func main() {
 
 func twoSum(nums []int, target int) []int {
 	myMap := make(map[int]int)
-	var result []int
+	result := []int{}
 
-	for i := range nums {
-		remain := target - nums[i]
+	for i, num := range nums {
+		complement := target - nums[num]
 
-		if _, exist := myMap[remain]; exist {
-			result = append(result, myMap[remain], i)
-			break
-		} else {
-			myMap[nums[i]] = i
+		if index, exist := myMap[complement]; exist {
+			result = append(result, index, i)
+			return result
 		}
+		myMap[num] = num
 	}
-
 	return result
 }
