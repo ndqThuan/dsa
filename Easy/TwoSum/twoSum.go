@@ -47,13 +47,17 @@ func twoSum(nums []int, target int) []int {
 	result := []int{}
 
 	for i, num := range nums {
-		complement := target - nums[num]
+		complement := target - num
+
+		if complement < 0 {
+			continue
+		}
 
 		if index, exist := myMap[complement]; exist {
 			result = append(result, index, i)
 			return result
 		}
-		myMap[num] = num
+		myMap[num] = i
 	}
 	return result
 }
